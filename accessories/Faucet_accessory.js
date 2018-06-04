@@ -9,6 +9,7 @@ var timeoutObj = "";
 var FAUCET = {
   active: false,
   name: "Fake faucet",
+  typeName: "faucet",
   timerEnd: 0,
   defaultDuration: 3600,
 
@@ -71,7 +72,7 @@ sprinkler
       clearTimeout(timeoutObj);
 
       setTimeout(function() {
-        console.log("Ausgeschaltet");        
+        console.log("Switched off");        
         FAUCET.timerEnd = FAUCET.defaultDuration + Math.floor(new Date() / 1000);
         callback(null);
 
@@ -83,7 +84,7 @@ sprinkler
         .getService(Service.Valve)
         .setCharacteristic(Characteristic.InUse, Characteristic.InUse.NOT_IN_USE);
         
-                sprinkler
+         sprinkler
         .getService(Service.Valve)
         .updateCharacteristic(Characteristic.InUse, Characteristic.InUse.NOT_IN_USE);          
 
