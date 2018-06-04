@@ -170,7 +170,7 @@ sprinkler
     if (FAUCET.active) {
       
       var duration = FAUCET.timerEnd - Math.floor(new Date() / 1000);
-      console.log(FAUCET.typeName + " RemainingDuration: " + duration)
+      console.log(FAUCET.typeName + " RemainingDuration: " + duration + "s")
       callback(err, duration);
     }
     else {
@@ -183,7 +183,7 @@ sprinkler
   .getService(Service.Valve)
   .getCharacteristic(Characteristic.SetDuration)
   .on('set', function(newValue, callback) {
-    console.log(FAUCET.typeName + " SetDuration => NewValue: " + newValue);
+    console.log(FAUCET.typeName + " SetDuration => NewValue: " + newValue + "s")
     
     var err = null; // in case there were any problems
     FAUCET.defaultDuration = newValue;
