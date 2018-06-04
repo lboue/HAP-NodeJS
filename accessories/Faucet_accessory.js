@@ -17,7 +17,7 @@ var FAUCET = {
     FAUCET.motionDetected = false;
   },
   identify: function() {
-    console.log("Identify the sprinkler!");
+    console.log("Identify the faucet!");
   }
 }
 
