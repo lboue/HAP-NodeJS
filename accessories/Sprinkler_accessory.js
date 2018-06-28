@@ -8,6 +8,7 @@ var timeoutObj = "";
 // here's a fake hardware device that we'll expose to HomeKit
 var SPRINKLER = {
   active: false,
+  typeName: "Sprinkler",
   name: "Fake sprinkler",
   timerEnd: 0,
   defaultDuration: 3600,
@@ -17,7 +18,8 @@ var SPRINKLER = {
     SPRINKLER.motionDetected = false;
   },
   identify: function() {
-    console.log("Identify the sprinkler!");
+    //console.log("Identify the sprinkler!");
+	console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] Identify the sprinkler");
   }
 }
 
@@ -50,7 +52,7 @@ sprinkler
   .getCharacteristic(Characteristic.Active)
   .on('get', function(callback) {
 
-    console.log("[Sprinkler:" + SPRINKLER.name + "] polling to get status");
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] polling to get status");
     var err = null; // in case there were any problems
 
     if (SPRINKLER.active) {
@@ -63,7 +65,7 @@ sprinkler
   .on('set', function(newValue, callback) {
 
     //console.log("set Active => setNewValue: " + newValue);
-    console.log("[Sprinkler:" + SPRINKLER.name + "] set Active => setNewValue: " + newValue);
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] set Active => setNewValue: " + newValue);
    
     // STOPING
     if (SPRINKLER.active) {
@@ -72,15 +74,15 @@ sprinkler
       clearTimeout(timeoutObj);
 
       setTimeout(function() {
-        console.log("[Sprinkler:" + SPRINKLER.name + "] Turning Off");
+    	console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] Turning Off");
         SPRINKLER.timerEnd = SPRINKLER.defaultDuration + Math.floor(new Date() / 1000);
         callback(null);
 
-
+	
         sprinkler
         .getService(Service.Valve)
-        .setCharacteristic(Characteristic.SetDuration, 0);      // Reset remainingtime to 0
-
+        .setCharacteristic(Characteristic.SetDuration, 0);	// Reset remainingtime to 0
+	
         sprinkler
         .getService(Service.Valve)
         .setCharacteristic(Characteristic.InUse, Characteristic.InUse.NOT_IN_USE);
@@ -96,7 +98,7 @@ sprinkler
       openVentile();
       setTimeout(function() {
         //console.log(SPRINKLER.typeName + " Turn On");
-        console.log("[Sprinkler:" + SPRINKLER.name + "] Starting");
+    	console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] Starting");
         SPRINKLER.timerEnd = SPRINKLER.defaultDuration + Math.floor(new Date() / 1000);
 
         clearTimeout(timeoutObj);
@@ -117,7 +119,7 @@ sprinkler
           .setCharacteristic(Characteristic.Active, Characteristic.Active.INACTIVE);
         
           //console.log(SPRINKLER.typeName + "Turn Off");                  
-          console.log("[Sprinkler:" + SPRINKLER.name + "] Shutting Off");
+    	  console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] Shutting Off");
 
         }, SPRINKLER.defaultDuration * 1000);
         
@@ -149,7 +151,7 @@ sprinkler
   .getCharacteristic(Characteristic.InUse)
   .on('get', function(callback) {
     //console.log(SPRINKLER.typeName + " get In_Use");
-    console.log("[Sprinkler:" + SPRINKLER.name + "] get Characteristic.InUse");
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] get Characteristic.InUse");
     var err = null; // in case there were any problems
 
     if (SPRINKLER.active) {
@@ -161,7 +163,7 @@ sprinkler
   })
   .on('set', function(newValue, callback) {
     //console.log(SPRINKLER.typeName + " set In_Use => NewValue: " + newValue);    
-    console.log("[Sprinkler:" + SPRINKLER.name + "] set Characteristic.InUse) = " + newValue);
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] set Characteristic.InUse) = " + newValue);
   });
 
 
@@ -176,7 +178,7 @@ sprinkler
       
       var duration = SPRINKLER.timerEnd - Math.floor(new Date() / 1000);
       //console.log(SPRINKLER.typeName + " RemainingDuration: " + duration)
-      console.log("[Sprinkler:" + SPRINKLER.name + "] RemainingDuration = " + duration + " s");
+      console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] RemainingDuration = " + duration + " s");
       callback(err, duration);
     }
     else {
@@ -190,11 +192,11 @@ sprinkler
   .getCharacteristic(Characteristic.SetDuration)
   .on('set', function(newValue, callback) {
     //console.log(SPRINKLER.typeName + " SetDuration => NewValue: " + newValue);
-    console.log("[Sprinkler:" + SPRINKLER.name + "] SetDuration = " + newValue/60 + " min");
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] SetDuration = " + newValue/60 + " min");
     
     var err = null; // in case there were any problems
     SPRINKLER.defaultDuration = newValue;
-    console.log("[Sprinkler:" + SPRINKLER.name + "] defaultDuration = " + SPRINKLER.defaultDuration/60 + " min");
+    console.log("[" + SPRINKLER.typeName + ":" + SPRINKLER.name + "] defaultDuration = " + SPRINKLER.defaultDuration/60 + " min");
     callback();  
   });
 
@@ -209,3 +211,4 @@ sprinkler
     // Add your code here
     //console.log("Close") ;
   }
+  
