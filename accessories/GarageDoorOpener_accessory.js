@@ -38,9 +38,8 @@ garage
   .getService(Service.AccessoryInformation)
   .setCharacteristic(Characteristic.Manufacturer, "Liftmaster")
   .setCharacteristic(Characteristic.Model, "Rev-1")
-  //.setCharacteristic(Characteristic.SerialNumber, "TW000165");
-  .setCharacteristic(Characteristic.SerialNumber, "TW000165")
-  .setCharacteristic(Characteristic.ObstructionDetected, true);
+  .setCharacteristic(Characteristic.FirmwareRevision, "2.1")
+  .setCharacteristic(Characteristic.SerialNumber, "TW000165");
 
 garage.on('identify', function(paired, callback) {
   FAKE_GARAGE.identify();
