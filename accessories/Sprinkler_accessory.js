@@ -36,6 +36,12 @@ var sprinkler = exports.accessory = new Accessory('?? Sprinkler', sprinklerUUID)
 sprinkler.username = "A3:AB:3D:4D:2E:A3";
 sprinkler.pincode = "123-44-567";
 
+sprinkler
+  .getService(Service.AccessoryInformation)
+  .setCharacteristic(Characteristic.Manufacturer, "Garden")
+  .setCharacteristic(Characteristic.Model, "Sprinkler Valve")
+  .setCharacteristic(Characteristic.SerialNumber, "SN000000");
+
 // Add the actual Valve Service and listen for change events from iOS.
 // We can see the complete list of Services and Characteristics in `lib/gen/HomeKitTypes.js`
 var sprinklerService = sprinkler.addService(Service.Valve, "?? Sprinkler")
