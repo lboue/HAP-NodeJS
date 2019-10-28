@@ -1,0 +1,73 @@
+pi@raspberrypi:/usr/lib/node_modules/homebridge/node_modules/hap-nodejs $ sudo DEBUG=* node BridgedCore.js 
+HAP-NodeJS starting...
+  AccessoryLoader Parsing accessory: Light_accessory.js +0ms
+  EventedHTTPServer Server listening on port 51826 +198ms
+  EventedHTTPServer [::ffff:192.168.1.136] New connection from client +1s
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP server listening on port 35757 +3ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /pair-verify +44ms
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: POST /pair-verify +1ms
+  HAPServer [CC:22:3D:E3:CE:F6] Pair verify step 1/2 +10ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +276ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /pair-verify +36ms
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: POST /pair-verify +1ms
+  HAPServer [CC:22:3D:E3:CE:F6] Pair verify step 2/2 +2ms
+  HAPServer [CC:22:3D:E3:CE:F6] Client 43FD7AB2-A596-4FF4-B6D3-31182869D50F verification complete +108ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +3ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /accessories +82ms
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: GET /accessories +1ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +7ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /characteristics +429ms
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: PUT /characteristics +1ms
+  Accessory [Node Bridge] Processing characteristic set: [{"aid":5,"iid":10,"ev":true},{"aid":5,"iid":11,"ev":true},{"aid":5,"iid":12,"ev":true},{"aid":5,"iid":13,"ev":true}] +2ms
+  Accessory [Node Bridge] Registering Characteristic "On" for events +3ms
+  Accessory [Node Bridge] Registering Characteristic "Brightness" for events +1ms
+  Accessory [Node Bridge] Registering Characteristic "Saturation" for events +1ms
+  Accessory [Node Bridge] Registering Characteristic "Hue" for events +0ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +2ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /characteristics?id=5.13,5.12,5.11,5.10 +99ms
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: GET /characteristics?id=5.13,5.12,5.11,5.10 +0ms
+  Accessory [Node Bridge] Getting value for Characteristic "Hue" +7ms
+'Simple Light' hue is 0
+  Accessory [Node Bridge] Got Characteristic "Hue" value: 0 +7ms
+  Accessory [Node Bridge] Getting value for Characteristic "Saturation" +1ms
+'Simple Light' saturation is 0
+  Accessory [Node Bridge] Got Characteristic "Saturation" value: 0 +2ms
+  Accessory [Node Bridge] Getting value for Characteristic "Brightness" +1ms
+'Simple Light' brightness is 100
+  Accessory [Node Bridge] Got Characteristic "Brightness" value: 100 +4ms
+  EventedHTTPServer [::ffff:192.168.1.136] Muting event '5.11' notification for this connection since it originated here. +3ms
+  Accessory [Node Bridge] Getting value for Characteristic "On" +0ms
+'Simple Light' is off.
+  Accessory [Node Bridge] Got Characteristic "On" value: undefined +2ms
+  Accessory [Node Bridge] Error getting value for Characteristic "On": -70402 +0ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +3ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /characteristics?id=5.13,5.10,5.11,5.12 +5s
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: GET /characteristics?id=5.13,5.10,5.11,5.12 +1ms
+  Accessory [Node Bridge] Getting value for Characteristic "Hue" +3ms
+'Simple Light' hue is 0
+  Accessory [Node Bridge] Got Characteristic "Hue" value: 0 +3ms
+  Accessory [Node Bridge] Getting value for Characteristic "On" +1ms
+'Simple Light' is off.
+  Accessory [Node Bridge] Got Characteristic "On" value: undefined +2ms
+  Accessory [Node Bridge] Error getting value for Characteristic "On": -70402 +1ms
+  Accessory [Node Bridge] Getting value for Characteristic "Brightness" +2ms
+'Simple Light' brightness is 100
+  Accessory [Node Bridge] Got Characteristic "Brightness" value: 100 +2ms
+  Accessory [Node Bridge] Getting value for Characteristic "Saturation" +1ms
+'Simple Light' saturation is 0
+  Accessory [Node Bridge] Got Characteristic "Saturation" value: 0 +3ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +3ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /characteristics?id=5.10 +5s
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: GET /characteristics?id=5.10 +1ms
+  Accessory [Node Bridge] Getting value for Characteristic "On" +2ms
+'Simple Light' is off.
+  Accessory [Node Bridge] Got Characteristic "On" value: undefined +1ms
+  Accessory [Node Bridge] Error getting value for Characteristic "On": -70402 +1ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +2ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP request: /characteristics?id=5.10 +3s
+  HAPServer [CC:22:3D:E3:CE:F6] HAP Request: GET /characteristics?id=5.10 +1ms
+  Accessory [Node Bridge] Getting value for Characteristic "On" +2ms
+'Simple Light' is off.
+  Accessory [Node Bridge] Got Characteristic "On" value: undefined +1ms
+  Accessory [Node Bridge] Error getting value for Characteristic "On": -70402 +1ms
+  EventedHTTPServer [::ffff:192.168.1.136] HTTP Response is finished +2ms
