@@ -2,6 +2,7 @@ var Accessory = require('../').Accessory;
 var Service = require('../').Service;
 var Characteristic = require('../').Characteristic;
 var uuid = require('../').uuid;
+var HAPServer = require('../').HAPServer;
 
 var LightController = {
   name: "Simple Light", //name of accessory
@@ -16,7 +17,7 @@ var LightController = {
   hue: 0, //current hue
   saturation: 0, //current saturation
 
-  outputLogs: false, //output logs
+  outputLogs: true, //output logs
 
   setPower: function(status) { //set power of accessory
     if(this.outputLogs) console.log("Turning the '%s' %s", this.name, status ? "on" : "off");
@@ -82,10 +83,14 @@ lightAccessory
     .setCharacteristic(Characteristic.Model, LightController.model)
     .setCharacteristic(Characteristic.SerialNumber, LightController.serialNumber);
 
+
+//HAPServer.Status.SERVICE_COMMUNICATION_FAILURE
+myerr = new Error(HAPServer.Status.SERVICE_COMMUNICATION_FAILURE);
+
 // listen for the "identify" event for this Accessory
 lightAccessory.on('identify', function(paired, callback) {
   LightController.identify();
-  callback();
+  callback(myerr);
 });
 
 // Add the actual Lightbulb Service and listen for change events from iOS.
@@ -106,16 +111,16 @@ lightAccessory
   // We want to intercept requests for our current power state so we can query the hardware itself instead of
   // allowing HAP-NodeJS to return the cached Characteristic.value.
   .on('get', function(callback) {
-    callback(null, LightController.getPower());
+    callback(myerr, LightController.getPower());
   });
 
 // To inform HomeKit about changes occurred outside of HomeKit (like user physically turn on the light)
 // Please use Characteristic.updateValue
 // 
-// lightAccessory
-//   .getService(Service.Lightbulb)
-//   .getCharacteristic(Characteristic.On)
-//   .updateValue(true);
+lightAccessory
+   .getService(Service.Lightbulb)
+   .getCharacteristic(Characteristic.On)
+   .updateValue(true);
 
 // also add an "optional" Characteristic for Brightness
 lightAccessory
