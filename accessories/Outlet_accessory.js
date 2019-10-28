@@ -2,7 +2,10 @@ var Accessory = require('../').Accessory;
 var Service = require('../').Service;
 var Characteristic = require('../').Characteristic;
 var uuid = require('../').uuid;
+var HAPServer = require('../').HAPServer;
 var err = null; // in case there were any problems
+//HAPServer.Status.SERVICE_COMMUNICATION_FAILURE
+myerr = new Error(HAPServer.Status.SERVICE_COMMUNICATION_FAILURE);
 
 // here's a fake hardware device that we'll expose to HomeKit
 var FAKE_OUTLET = {
@@ -73,7 +76,8 @@ outlet
 
     if (FAKE_OUTLET.powerOn) {
       console.log("Are we on? Yes.");
-      callback(err, true);
+      //callback(err, true);
+      callback(myerr, true);
     }
     else {
       console.log("Are we on? No.");
